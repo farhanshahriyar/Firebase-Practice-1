@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, getAuth } from 'firebase/auth'
+import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth'
 import app from '../../firebase/firebase.init';
 
 const Login = () => {
@@ -6,8 +6,17 @@ const Login = () => {
     const provider = new GoogleAuthProvider();
 
     const handleGoogleSignIn = () => {
-        console.log('google mama is coming dude...')
+        // console.log('google mama is coming dude...')
+        signInWithPopup(auth, provider)
+        .then(result => {
+            const user = result.user;
+            console.log(user)
+        })
+        .catch (error => {
+            console.log( 'tui error khaisot vai, ei karone', error.message)
+        })
     }
+
 return (
 <div>
     <div className="relative flex flex-col rounded-xl bg-transparent bg-clip-border text-gray-700 shadow-none items-center">
